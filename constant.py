@@ -15,7 +15,7 @@ from limit import QUOTA, VIP
 
 
 class BotText:
-    start = "😎 Ласкаво прошу до бота для завантаження YouTube. Надішли мені посилання на відео 😎"
+    start = "😎 Ласкаво прошу до бота для завантаження контенту на YouTube. Надішли мені посилання🔗 на відео 😎. Для додаткової інфи натисни /help"
 
     help = f"""
 1. This bot should works at all times. 
@@ -28,12 +28,12 @@ every one can use this bot within **{sizeof_fmt(QUOTA)} of quota for every {int(
 3. You can optionally choose to become 'VIP' user if you need more traffic. Type /vip for more information.
 
 4. Source code for this bot will always stay open, here-> https://github.com/tgbot-collection/ytdlbot
-    """ if ENABLE_VIP else "Бот для своїх сирунів🧡. Я можу завантажити відео з Ютабчика в Телеграм по посиланню. Підтримую завантаження відео з - YouTube, Vimeo, TikTok без лого та прончік"
+    """ if ENABLE_VIP else "Бот для своїх сирунів🧡. Я можу завантажити відео та аудіо з YouTube в Telegram за посиланням. Просто знайди те що потрібно завантажити, скопіюй посилання та надішли мені в Бот. Підтримую завантаження відео з - YouTube, Vimeo, TikTok без лого та прончік"
 
     about = "YouTube завантажувач by Максон😎"
 
     terms = f"""
-1. You can use this service, free of charge, {sizeof_fmt(QUOTA)} per {int(EX / 3600)} hours.
+1. You can use this service, free of charge, {sizeof_fmt(QUOTA)} per {int(EX / 3600)} hours
 
 2. The above traffic, is counted for one-way. 
 For example, if you download a video of 1GB, your current quota will be 9GB instead of 8GB.
