@@ -65,13 +65,13 @@ def download_hook(d: dict, bot_msg):
             result, err_msg = check_quota(total, bot_msg.chat.id)
             if result is False:
                 raise ValueError(err_msg)
-        text = f'[{filesize}]: Завантажую🔻 {percent} - {downloaded}/{total} @ {speed}'
+        text = f'[{filesize}]: Завантажую🔻 {percent} - {downloaded}/{total} 📶: {speed}'
         edit_text(bot_msg, text)
 
 
 def upload_hook(current, total, bot_msg):
     filesize = sizeof_fmt(total)
-    text = f'[{filesize}]: Відправляю🔺 {round(current / total * 100, 2)}% - {current}/{total}'
+    text = f'[{filesize}]: Відправляю тобі🔺 {round(current / total * 100, 2)}% - {current}/{total}'
     edit_text(bot_msg, text)
 
 
