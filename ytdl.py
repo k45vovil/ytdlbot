@@ -137,15 +137,15 @@ def download_handler(client: "Client", message: "types.Message"):
     Redis().user_count(chat_id)
 
     if message.chat.type != "private" and not message.text.lower().startswith("/ytdl"):
-        logging.warning("%s, it's annoying me...🙄️ ", message.text)
+        logging.warning("%s, мене це дратує...🙄️ ", message.text)
         return
 
     url = re.sub(r'/ytdl\s*', '', message.text)
-    logging.info("start %s", url)
+    logging.info("старт %s", url)
 
     if not re.findall(r"^https?://", url.lower()):
         Redis().update_metrics("bad_request")
-        message.reply_text("I think you should send me a link.", quote=True)
+        message.reply_text("Я думаю, ти повинен надіслати мені посилання.", quote=True)
         return
 
     Redis().update_metrics("video_request")
@@ -154,13 +154,13 @@ def download_handler(client: "Client", message: "types.Message"):
     temp_dir = tempfile.TemporaryDirectory()
 
     result = ytdl_download(url, temp_dir.name, bot_msg)
-    logging.info("Download complete.")
+    logging.info("Завантаження завершено.")
 
     markup = InlineKeyboardMarkup(
         [
             [  # First row
                 InlineKeyboardButton(  # Generates a callback query when pressed
-                    "audio",
+                    "Аудіо🔊",
                     callback_data="audio"
                 )
             ]
@@ -170,7 +170,7 @@ def download_handler(client: "Client", message: "types.Message"):
     if result["status"]:
         client.send_chat_action(chat_id, 'upload_document')
         video_paths = result["filepath"]
-        bot_msg.edit_text('Download complete. Sending now...')
+        bot_msg.edit_text('Завантаження завершено ✅. Надсилаю 🔺...')
         for video_path in video_paths:
             filename = pathlib.Path(video_path).name
             remain = bot_text.remaining_quota_caption(chat_id)
@@ -184,18 +184,18 @@ def download_handler(client: "Client", message: "types.Message"):
                               **meta
                               )
             Redis().update_metrics("video_success")
-        bot_msg.edit_text('Download success!✅')
+        bot_msg.edit_text('Я завантажив.😊👍 Ось результат!⬆️')
     else:
         client.send_chat_action(chat_id, 'typing')
         tb = result["error"][0:4000]
-        bot_msg.edit_text(f"Download failed!❌\n\n```{tb}```", disable_web_page_preview=True)
+        bot_msg.edit_text(f"Помилка завантаження!😭❌\n\n```{tb}```", disable_web_page_preview=True)
 
     temp_dir.cleanup()
 
 
 @app.on_callback_query()
 def answer(client: "Client", callback_query: types.CallbackQuery):
-    callback_query.answer(f"Converting to audio...please wait patiently")
+    callback_query.answer(f"Конвертую в аудіо🔊... Зачекай 🔄")
     Redis().update_metrics("audio_request")
 
     msg = callback_query.message
@@ -205,10 +205,10 @@ def answer(client: "Client", callback_query: types.CallbackQuery):
     flac_name = mp4_name.replace("mp4", "m4a")
 
     with tempfile.NamedTemporaryFile() as tmp:
-        logging.info("downloading to %s", tmp.name)
+        logging.info("завантаження до %s", tmp.name)
         client.send_chat_action(chat_id, 'record_video_note')
         client.download_media(msg, tmp.name)
-        logging.info("downloading complete %s", tmp.name)
+        logging.info("завантаження завершено %s", tmp.name)
         # execute ffmpeg
         client.send_chat_action(chat_id, 'record_audio')
         flac_tmp = convert_flac(flac_name, tmp)
