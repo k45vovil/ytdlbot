@@ -137,7 +137,7 @@ def download_handler(client: "Client", message: "types.Message"):
     Redis().user_count(chat_id)
 
     if message.chat.type != "private" and not message.text.lower().startswith("/ytdl"):
-        logging.warning("%s, мене це дратує...🙄️ ", message.text)
+        logging.warning("%s, мене це дратує...🙄️", message.text)
         return
 
     url = re.sub(r'/ytdl\s*', '', message.text)
@@ -184,7 +184,7 @@ def download_handler(client: "Client", message: "types.Message"):
                               **meta
                               )
             Redis().update_metrics("video_success")
-        bot_msg.edit_text('Я завантажив.😊👍 Ось результат!⬆️')
+        bot_msg.edit_text('Я завантажив.😊👍')
     else:
         client.send_chat_action(chat_id, 'typing')
         tb = result["error"][0:4000]
