@@ -33,7 +33,7 @@ apply_log_formatter()
 
 
 def sizeof_fmt(num: int, suffix='Б'):
-    for unit in ['', 'Кіл', 'Мег', 'Гіг', 'Tер', 'Pi', 'Ei', 'Zi']:
+    for unit in ['', 'К', 'М', 'Г', 'Tер', 'Pi', 'Ei', 'Zi']:
         if abs(num) < 1024.0:
             return "%3.1f%s%s" % (num, unit, suffix)
         num /= 1024.0
