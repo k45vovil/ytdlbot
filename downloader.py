@@ -32,8 +32,8 @@ EXPIRE = 5
 apply_log_formatter()
 
 
-def sizeof_fmt(num: int, suffix='B'):
-    for unit in ['', 'Ki', 'Mi', 'Gi', 'Ti', 'Pi', 'Ei', 'Zi']:
+def sizeof_fmt(num: int, suffix='Б'):
+    for unit in ['', 'Кіл', 'Мег', 'Гіг', 'Tер', 'Pi', 'Ei', 'Zi']:
         if abs(num) < 1024.0:
             return "%3.1f%s%s" % (num, unit, suffix)
         num /= 1024.0
@@ -56,8 +56,8 @@ def download_hook(d: dict, bot_msg):
         filesize = sizeof_fmt(total)
         max_size = 2 * 1024 * 1024 * 1024
         if total > max_size:
-            raise ValueError(f"\nYour video is too large. "
-                             f"{filesize} will exceed Telegram's max limit {sizeof_fmt(max_size)}")
+            raise ValueError(f"\nВаше відео завелике. "
+                             f"{filesize} перевищує максимальний ліміт Telegram {sizeof_fmt(max_size)}")
 
         percent = d.get("_percent_str", "N/A")
         speed = d.get("_speed_str", "N/A")
@@ -65,13 +65,13 @@ def download_hook(d: dict, bot_msg):
             result, err_msg = check_quota(total, bot_msg.chat.id)
             if result is False:
                 raise ValueError(err_msg)
-        text = f'[{filesize}]: Downloading {percent} - {downloaded}/{total} @ {speed}'
+        text = f'[{filesize}]: Завантажую🔻 {percent} - {downloaded}/{total} @ {speed}'
         edit_text(bot_msg, text)
 
 
 def upload_hook(current, total, bot_msg):
     filesize = sizeof_fmt(total)
-    text = f'[{filesize}]: Uploading {round(current / total * 100, 2)}% - {current}/{total}'
+    text = f'[{filesize}]: Відправляю🔺 {round(current / total * 100, 2)}% - {current}/{total}'
     edit_text(bot_msg, text)
 
 
