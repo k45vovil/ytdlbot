@@ -15,7 +15,7 @@ from limit import QUOTA, VIP
 
 
 class BotText:
-    start = "😎 Ласкаво прошу до бота для завантаження YouTube. 😎"
+    start = "😎 Ласкаво прошу до бота для завантаження YouTube. Надішли мені посилання на відео 😎"
 
     help = f"""
 1. This bot should works at all times. 
