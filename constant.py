@@ -15,7 +15,7 @@ from limit import QUOTA, VIP
 
 
 class BotText:
-    start = "Welcome to YouTube Download bot. Type /help for more information."
+    start = "😎 Ласкаво прошу до бота для завантаження YouTube. 😎"
 
     help = f"""
 1. This bot should works at all times. 
@@ -28,9 +28,9 @@ every one can use this bot within **{sizeof_fmt(QUOTA)} of quota for every {int(
 3. You can optionally choose to become 'VIP' user if you need more traffic. Type /vip for more information.
 
 4. Source code for this bot will always stay open, here-> https://github.com/tgbot-collection/ytdlbot
-    """ if ENABLE_VIP else "Help text"
+    """ if ENABLE_VIP else "Бот для своїх сирунів🧡. Я можу завантажити відео з Ютабчика в Телеграм по посиланню. Підтримую завантаження відео з - YouTube, Vimeo, TikTok без лого та прончік"
 
-    about = "YouTube-DL by @BennyThink. Open source on GitHub: https://github.com/tgbot-collection/ytdlbot"
+    about = "YouTube завантажувач by Максон😎"
 
     terms = f"""
 1. You can use this service, free of charge, {sizeof_fmt(QUOTA)} per {int(EX / 3600)} hours.
@@ -45,7 +45,7 @@ For example, if you download a video of 1GB, your current quota will be 9GB inst
 5. It's a open source project, you can always deploy your own bot.
 
 6. For VIPs, please refer to /vip command
-    """ if ENABLE_VIP else "Please contact the actual owner of this bot"
+    """ if ENABLE_VIP else "Будь ласка, скачуй всьо шо тобі душа бажає. Похуй-ветер"
 
     vip = f"""
 **Terms:**
