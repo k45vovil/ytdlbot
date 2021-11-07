@@ -145,7 +145,7 @@ def download_handler(client: "Client", message: "types.Message"):
 
     if not re.findall(r"^https?://", url.lower()):
         Redis().update_metrics("bad_request")
-        message.reply_text("Я думаю, ти повинен надіслати мені посилання.", quote=True)
+        message.reply_text("Ну і що це за брєд?😂 Надішли посилання котику 🐈", quote=True)
         return
 
     Redis().update_metrics("video_request")
@@ -160,7 +160,7 @@ def download_handler(client: "Client", message: "types.Message"):
         [
             [  # First row
                 InlineKeyboardButton(  # Generates a callback query when pressed
-                    "Аудіо🔊",
+                    "Отримати в аудіо🔊",
                     callback_data="audio"
                 )
             ]
@@ -170,7 +170,7 @@ def download_handler(client: "Client", message: "types.Message"):
     if result["status"]:
         client.send_chat_action(chat_id, 'upload_document')
         video_paths = result["filepath"]
-        bot_msg.edit_text('Завантаження завершено ✅. Надсилаю 🔺...')
+        bot_msg.edit_text('Завершив✅ Надсилаю🔺...')
         for video_path in video_paths:
             filename = pathlib.Path(video_path).name
             remain = bot_text.remaining_quota_caption(chat_id)
@@ -184,11 +184,11 @@ def download_handler(client: "Client", message: "types.Message"):
                               **meta
                               )
             Redis().update_metrics("video_success")
-        bot_msg.edit_text('Я завантажив.😊👍')
+        bot_msg.edit_text('Все чудово, завантажив 😊👍')
     else:
         client.send_chat_action(chat_id, 'typing')
         tb = result["error"][0:4000]
-        bot_msg.edit_text(f"Помилка завантаження!😭❌\n\n```{tb}```", disable_web_page_preview=True)
+        bot_msg.edit_text(f"Йой! Трапилась бідося!😭❌\n\n```{tb}```", disable_web_page_preview=True)
 
     temp_dir.cleanup()
 
