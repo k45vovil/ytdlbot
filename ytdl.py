@@ -149,7 +149,7 @@ def download_handler(client: "Client", message: "types.Message"):
         return
 
     Redis().update_metrics("video_request")
-    bot_msg: typing.Union["types.Message", "typing.Any"] = message.reply_text("Processing", quote=True)
+    bot_msg: typing.Union["types.Message", "typing.Any"] = message.reply_text("Обробка⏳", quote=True)
     client.send_chat_action(chat_id, 'upload_video')
     temp_dir = tempfile.TemporaryDirectory()
 
