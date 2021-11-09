@@ -65,7 +65,7 @@ def download_hook(d: dict, bot_msg):
             result, err_msg = check_quota(total, bot_msg.chat.id)
             if result is False:
                 raise ValueError(err_msg)
-        text = f'[{filesize}]: Завантажую🔻 {percent} - {downloaded}/{total} 📶: {speed}'
+        text = f'[{filesize}]: Завантажую🔻{percent} - {downloaded}байт{total} 📶: {speed}'
         edit_text(bot_msg, text)
 
 
