@@ -26,9 +26,9 @@ AFD_USER_ID = os.getenv("AFD_USER_ID")
 
 OWNER = os.getenv("OWNER", "BennyThink")
 
-APP_ID: "int" = int(os.getenv("8851307", 111))
-APP_HASH = os.getenv(" 57e0753b94ec4168b7899f1ab6ff90a8 ", "111")
-TOKEN = os.getenv("1962234091:AAEsDUF5Wzy22lmjWykLiFl1xFO3rJ0QZ5w", "3703WLI")
+APP_ID: "int" = int(os.getenv("APP_ID", 111))
+APP_HASH = os.getenv("APP_HASH", "111")
+TOKEN = os.getenv("TOKEN", "3703WLI")
 REDIS = os.getenv("REDIS")
 AUTHORIZED_USER: "str" = os.getenv("AUTHORIZED", "")
 
